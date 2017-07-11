@@ -1,9 +1,0 @@
-== Capítulo 1: Instalación de la plataforma redborder
-
-En este capítulo se describe el proceso para realizar una instalación del IPS de la plataforma redborder. En lo que resta de
-la presente documentación nos referiremos a la máquina donde se va a instalar la plataforma como *IPS*.
-
-
-
-=== Instalación
-

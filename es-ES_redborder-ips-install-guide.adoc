@@ -13,9 +13,13 @@
 :header:
 :icons: font
 :table-caption: Tabla
+:figure-caption: Figura
 :stem: latexmath
 
-= redborder install guide
+= Guía de instalación de redborder
 
-include::chapters/es-ES/01-install.adoc[]
+include::chapters/es-ES/01-requirements.adoc[]
 
+include::chapters/es-ES/02-install.adoc[]
+
+include::chapters/es-ES/03-config.adoc[]

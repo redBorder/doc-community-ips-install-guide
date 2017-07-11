@@ -1,0 +1,57 @@
+## Proceso de instalación
+
+Para la instalación de redborder Community IPS sensor, el usuario puede
+solicitar desde la web de redborder una **imagen ISO** que podrá usar para
+desplegar el software en el equipo que desee.
+
+* En caso de instalación en **máquina física**, es posible grabar la imagen
+en un DVD o dispositivo de almacenamiento USB para proceder a su
+instalación
+* En caso de instalación en **máquina virtual**, será suficiente montar la
+imagen en un dispositivo DVD virtual.
+
+En cualquiera de los dos tipos de escenarios, ya sea instalación sobre
+máquina física o virtual, tras arrancar el equipo desde la unidad en la
+que se encuentre montada la imagen ISO de redborder Community IPS, se
+mostrará en pantalla el asistente de instalación, que cuenta con un menú
+con las siguientes opciones:
+
+[.text-center]
+.Pantalla principal del asistente de instalación de redborder Community IPS
+image::images/image21.png[]
+
+Seleccione **Install Community IPS Sensor** parama comenzar el proceso de
+instalación de redBorder Community IPS.
+
+[.text-center]
+.Asistente de instalación: Install Sensor IPS
+image::images/image12.png[image]
+
+Complete los siguientes ajustes básicos antes de continuar:
+
+* Selección de disco
+
+[.text-center]
+.Ajustes básicos: selección de disco
+image::images/image15.png[image]
+
+* Selección de contraseña
+
+Contraseña por defecto: `redborder`
+
+[.text-center]
+.Ajustes básicos: selección de contraseña
+image::images/image9.png[image]
+
+Una vez finalizados los ajustes básicos, se inicia automáticamente la
+instalación de redborder Community IPS.
+
+[.text-center]
+.Instalación de los paquetes del sistema
+image::images/image19.png[image]
+
+Tras completar la instalación, el sistema se reiniciará automáticamente.
+
+[.text-center]
+.Reinicio del sistema tras la instalación de los paquetes del sistema
+image::images/image11.png[image]

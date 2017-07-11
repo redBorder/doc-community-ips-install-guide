@@ -1,0 +1,233 @@
+## Proceso de configuración
+
+Una vez reiniciado el sistema, se puede iniciar la configuración de
+redborder Community IPS.
+
+
+[NOTE]
+.Credenciales del sistema:
+====
+----
+Usuario:    root
+Contraseña: <introducida en los ajustes básicos>
+----
+====
+
+[.text-center]
+.Solicitud de credenciales para acceder al sistema
+image::images/image23.png[image]
+
+Se ejecuta el comando rb_sysconf para acceder al menú de configuración
+de redborder.
+
+[.text-center]
+.Ejecución del comando `rb_sysconf`
+image::images/image17.png[image]
+
+### Configuración de red
+
+Una vez dentro del menú de configuración de redborder, seleccione la
+opción 2 (Network configuration) para acceder al menú de configuración
+de red.
+
+[.text-center]
+.Menú de configuración de redborder Community IPS: selección de `Network configuration`
+image::images/image20.png[image]
+
+
+Desde el menú de configuración de red es posible establecer la interfaz
+de gestión, el DNS y el dominio.
+
+[.text-center]
+.Menú de configuración de red de redborder Community IPS
+image::images/image2.png[image]
+
+#### Configuración de la interfaz de gestión
+
+Seleccione la opción **1** para configurar la interfaz de gestión:
+Management Network configuration.
+
+[.text-center]
+.Menú de configuración de red: selección de `Management Network configuration`
+image::images/image8.png[image]
+
+En este menú aparece un listado de los bondings existentes, por lo que
+tras la instalación deberá estar vacío, como se muestra en la imagen de
+abajo.
+
+[.text-center]
+.Menú de configuración de red de gestión
+image::images/image25.png[image]
+
+Para aportar redundancia, cabe la posibilidad de formar bondings con 2
+interfaces de gestión cada uno. Si no se desea redundancia, igualmente
+se deberá formar un bonding, aunque sea empleando una única interfaz de
+gestión.
+
+Seleccione la opción `n` para añadir un nuevo bonding e introduzca los
+parámetros que se solicitan. Puede ver en la imagen de abajo que la
+opción por defecto es incluir una única interfaz de gestión en el
+bonding (`Insert second port (y/N)?`).
+
+[.text-center]
+.Menú de configuración de red de gestión: `Bonding 0 created successfully`
+image::images/image26.png[image]
+
+El nuevo bonding creado aparece ahora en el listado anterior. También,
+se indica que para que los cambios surtan efecto se debe aplicar la
+configuración. Esto se hará al final del proceso de configuración de
+red.
+
+[.text-center]
+.Nuevo bonding creado
+image::images/image7.png[image]
+
+#### Configuración de DNS y dominio
+
+El siguiente paso será configurar el DNS y el dominio. Para ello, será
+necesario volver al menú anterior con la opción `q` y seleccionar la
+opción 2 (`DNS and domain settings`).
+
+[.text-center]
+.Menú de configuración de red: `DNS and domain settings`
+image::images/image28.png[image]
+
+#### Configuración de los segmentos de inspección
+
+Tras este punto, solo falta realizar la configuración de los segmentos
+de inspección. Seleccione la opción 3: `Segment settings`.
+
+[.text-center]
+.Menú de configuración de red: `Segment settings`
+image::images/image4.png[image]
+
+Si las interfaces de red de inspección tienen la opción de bypass, esta
+configuración se habrá realizado automáticamente. En caso contrario,
+habrá que indicar qué interfaces de red se utilizarán para inspección.
+
+Para la elaboración de esta guía se han utilizado interfaces de red sin
+bypass. Es por esto en la siguiente imagen se muestra un listado vacío
+de segmentos de inspección.
+
+Se introduce la opción n para añadir un nuevo segmento y se completan
+los siguientes campos, como se indica en la imagen de abajo.
+
+[.text-center]
+.Menú de configuración de segmentos: `new segment`
+image::images/image32.png[image]
+
+Tenga en cuenta que, por defecto, el asistente considera que querrá
+incluir un segundo puerto al segmento. Si no lo desea, deberá responder
+negativamente a la pregunta: `Assign a second port to the segment (Y/n)?`.
+
+En el menú de configuración de segmentos aparecerá el nuevo segmento
+creado, tal y como se muestra en la imagen de abajo.
+
+[.text-center]
+.Menú de configuración de segmentos: `nuevo segmento creado`
+image::images/image5.png[image]
+
+Por último, es necesario aplicar los cambios de red. Para ello, desde el
+menú de configuración de red (si está en el menú de configuración de
+segmentos introduzca la opción `q` para volver al menú anterior)
+introduzca la opción `a` para aplicar los cambios.
+
+[.text-center]
+.Menú de configuración de red: `apply`
+image::images/image13.png[image]
+
+El asistente comenzará a aplicar los cambios realizados y mostrará el
+resultado de los mismos.
+
+[.text-center]
+.Menú de configuración de red: `aplicando cambios`
+image::images/image29.png[image]
+
+Una vez finalizado el proceso de aplicación de cambios, el asistente
+vuelve a la pantalla principal del menú de configuración de red.
+Seleccione la opción q para volver al menú de configuración principal.
+
+[.text-center]
+.Menú de configuración de red: `quit`
+image::images/image10.png[image]
+
+### Configuración del sistema
+
+En este punto se configura el nombre del sistema, se incluye la
+dirección IP del Manager de redborder en el que se registrará y se da la
+orden de registro. Selección de la opción 1: `System configuration`.
+
+[.text-center]
+.Menú de configuración de redborder Community IPS: `selección de System configuration`
+image::images/image22.png[image]
+
+#### Nombre de equipo
+
+Seleccione la opción 1 (Hostname) para cambiar el nombre del equipo y, a
+continuación, introduzca el nuevo nombre del equipo y continúe.
+
+[.text-center]
+.Menú de configuración del sistema: Hostname
+image::images/image30.png[image]
+
+#### Dirección IP del Manager de redborder
+
+El siguiente paso será indicar cuál será el Manager de redborder en el
+que se desea registrar el sensor redborder Community IPS. Para ello,
+seleccione la opción 3 (`IP address for rB Master Manager`) e introduzca
+la dirección IP del Manager de redborder.
+
+El sistema comprobará que tiene conectividad con el Manager y
+sincronizará la hora con él.
+
+[.text-center]
+.Menú de configuración del sistema: `IP address for rB Master Manager`
+image::images/image6.png[image]
+
+#### Registro de redborder Community IPS
+
+A continuación, podrá proceder al registro del sensor IPS contra el
+Manager. Para ello, seleccione la opción 4 (Register rB Sensor/Manager)
+e introduzca las credenciales de admin de la consola web.
+
+[NOTE]
+.Credenciales de admin de la consola web por defecto
+====
+----
+usuario:    admin
+contraseña: redborder
+----
+====
+
+[.text-center]
+.Menú de configuración del sistema: `Register rB Sensor/Manager`
+image::images/image1.png[image]
+
+Para continuar, deberá indicar si desea obtener una salida más detallada
+del proceso de registro. Después de esto, comienza el proceso de
+registro del sensor redborder Community IPS contra el Manager de
+redborder.
+
+[.text-center]
+.Proceso de registro del sensor redborder Community IPS contra el Manager de redborder
+image::images/image27.png[image]
+
+Una vez terminado el registro, el sistema le pedirá que presione una
+tecla para continuar.
+
+[.text-center]
+.Proceso de registro finalizado
+image::images/image3.png[image]
+
+Una vez hecho, verá la siguiente pantalla:
+
+[.text-center]
+.Menú de configuración de sistema de redborder Community IPS tras completar el registro
+image::images/image14.png[image]
+
+El proceso de configuración de redborder ha terminado. Por lo que ya
+puede salir del asistente de configuración de redborder Community IPS y
+hacer logout del sensor.
+
+Deberá acceder al Manager de redborder para crear una política de
+seguridad y aplicarla al sensor.

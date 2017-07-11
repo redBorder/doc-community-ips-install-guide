@@ -1,0 +1,74 @@
+## Requisitos
+
+Antes de instalar redborder Community IPS sensor tenga en cuenta los siguientes
+requisitos hardware y de conectividad.
+
+### Requisitos hardware
+
+**redborder Community IPS** puede instalarse en:
+
+* **Máquina física**: appliance de redborder o máquina de propósito general.
+* **Máquina virtual**: VMware, KVM, etc.
+
+Los requisitos mínimos recomendados de instalación de **redborder
+Community IPS** en un equipo físico o virtual para un entorno no crítico y
+de poco tráfico de red:
+
+[cols="d,d"]
+|===============================================================================
+| CPUs virtuales / Hilos físicos | 1
+| Memoria RAM | 4 GB
+| Almacenamiento | 5 GB
+
+.^| Red
+|
+Al menos una interfaz de red para gestión.
+
+Al menos una interfaz de red para inspección.
+|===============================================================================
+
+Tenga en cuenta que estos requisitos son los mínimos necesarios para que
+redborder Community IPS pueda funcionar en un entorno ligero no crítico.
+Por favor, para **entornos crítmicos o con un mayor tráfico**, póngase en
+contacto con el equipo de redborder.
+
+### Requisitos de conectividad
+
+El sensor IPS únicamente deberá poder comunicarse con el Manager de
+redborder y con los administradores de la solución que deban acceder a
+él. Por tanto, la conectividad necesaria es:
+
+.Requisitos de conectividad
+|===============================================================================
+|Manager → Sensor | Sensor → Manager | Admins → Sensor
+
+^|
+
+ICMP-type 8 (ping) icon:star[role="yellow"]
+
+TCP/22 (SSH)
+
+UDP/161 (SNMP)
+
+^|
+
+TCP/9092 (Kafka)
+
+TCP, UDP/514 (Syslog)
+
+UDP/162 (Traps SNMP)
+
+TCP/443 (Chef)
+
+UDP/123 (NTP)
+
+^|
+
+ICMP-type 8 (ping) icon:star[role="yellow"]
+
+TCP/22 (SSH)
+|===============================================================================
+
+****
+icon:star[role="yellow"] Recomendado
+****

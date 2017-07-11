@@ -7,7 +7,7 @@
 <meta name="generator" content="Asciidoctor 1.5.4">
 <meta name="keywords" content="redborder, quickstart, guide, manual">
 <meta name="author" content="redborder">
-<title>redborder install guide</title>
+<title>Guía de instalación de redborder</title>
 <style>
 /*! normalize.css v2.1.2 | MIT License | git.io/normalize */
 /* ========================================================================== HTML5 display definitions ========================================================================== */
@@ -696,12 +696,16 @@ b.conum * { color: inherit !important; }
 
 .literalblock pre, .listingblock pre { background: #333333; }
 
+.text-center > .title {
+  text-align: center !important;
+}
+
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
 <body class="book toc2 toc-left">
 <div id="header">
-<h1>redborder install guide</h1>
+<h1>Guía de instalación de redborder</h1>
 <div class="details">
 <span id="author" class="author">redborder</span><br>
 <span id="revnumber">version 1.0.0</span>
@@ -709,9 +713,29 @@ b.conum * { color: inherit !important; }
 <div id="toc" class="toc2">
 <div id="toctitle">Índice</div>
 <ul class="sectlevel1">
-<li><a href="#_capítulo_1_instalación_de_la_plataforma_redborder">Capítulo 1: Instalación de la plataforma redborder</a>
+<li><a href="#_requisitos">Requisitos</a>
 <ul class="sectlevel2">
-<li><a href="#_instalación">Instalación</a></li>
+<li><a href="#_requisitos_hardware">Requisitos hardware</a></li>
+<li><a href="#_requisitos_de_conectividad">Requisitos de conectividad</a></li>
+</ul>
+</li>
+<li><a href="#_proceso_de_instalación">Proceso de instalación</a></li>
+<li><a href="#_proceso_de_configuración">Proceso de configuración</a>
+<ul class="sectlevel2">
+<li><a href="#_configuración_de_red">Configuración de red</a>
+<ul class="sectlevel3">
+<li><a href="#_configuración_de_la_interfaz_de_gestión">Configuración de la interfaz de gestión</a></li>
+<li><a href="#_configuración_de_dns_y_dominio">Configuración de DNS y dominio</a></li>
+<li><a href="#_configuración_de_los_segmentos_de_inspección">Configuración de los segmentos de inspección</a></li>
+</ul>
+</li>
+<li><a href="#_configuración_del_sistema">Configuración del sistema</a>
+<ul class="sectlevel3">
+<li><a href="#_nombre_de_equipo">Nombre de equipo</a></li>
+<li><a href="#_dirección_ip_del_manager_de_redborder">Dirección IP del Manager de redborder</a></li>
+<li><a href="#_registro_de_redborder_community_ips">Registro de redborder Community IPS</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -719,15 +743,538 @@ b.conum * { color: inherit !important; }
 </div>
 <div id="content">
 <div class="sect1">
-<h2 id="_capítulo_1_instalación_de_la_plataforma_redborder">Capítulo 1: Instalación de la plataforma redborder</h2>
+<h2 id="_requisitos">Requisitos</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>En este capítulo se describe el proceso para realizar una instalación del IPS de la plataforma redborder. En lo que resta de
-la presente documentación nos referiremos a la máquina donde se va a instalar la plataforma como <strong>IPS</strong>.</p>
+<p>Antes de instalar redborder Community IPS sensor tenga en cuenta los siguientes
+requisitos hardware y de conectividad.</p>
 </div>
 <div class="sect2">
-<h3 id="_instalación">Instalación</h3>
-
+<h3 id="_requisitos_hardware">Requisitos hardware</h3>
+<div class="paragraph">
+<p><strong>redborder Community IPS</strong> puede instalarse en:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Máquina física</strong>: appliance de redborder o máquina de propósito general.</p>
+</li>
+<li>
+<p><strong>Máquina virtual</strong>: VMware, KVM, etc.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Los requisitos mínimos recomendados de instalación de <strong>redborder
+Community IPS</strong> en un equipo físico o virtual para un entorno no crítico y
+de poco tráfico de red:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CPUs virtuales / Hilos físicos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Memoria RAM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 GB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Almacenamiento</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5 GB</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Red</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Al menos una interfaz de red para gestión.
+</p><p class="tableblock">Al menos una interfaz de red para inspección.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Tenga en cuenta que estos requisitos son los mínimos necesarios para que
+redborder Community IPS pueda funcionar en un entorno ligero no crítico.
+Por favor, para <strong>entornos crítmicos o con un mayor tráfico</strong>, póngase en
+contacto con el equipo de redborder.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_requisitos_de_conectividad">Requisitos de conectividad</h3>
+<div class="paragraph">
+<p>El sensor IPS únicamente deberá poder comunicarse con el Manager de
+redborder y con los administradores de la solución que deban acceder a
+él. Por tanto, la conectividad necesaria es:</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Tabla 1. Requisitos de conectividad</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Manager → Sensor</th>
+<th class="tableblock halign-left valign-top">Sensor → Manager</th>
+<th class="tableblock halign-left valign-top">Admins → Sensor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ICMP-type 8 (ping) <span class="icon yellow"><i class="fa fa-star"></i></span>
+</p><p class="tableblock">TCP/22 (SSH)
+</p><p class="tableblock">UDP/161 (SNMP)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">TCP/9092 (Kafka)
+</p><p class="tableblock">TCP, UDP/514 (Syslog)
+</p><p class="tableblock">UDP/162 (Traps SNMP)
+</p><p class="tableblock">TCP/443 (Chef)
+</p><p class="tableblock">UDP/123 (NTP)</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">ICMP-type 8 (ping) <span class="icon yellow"><i class="fa fa-star"></i></span>
+</p><p class="tableblock">TCP/22 (SSH)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sidebarblock">
+<div class="content">
+<div class="paragraph">
+<p><span class="icon yellow"><i class="fa fa-star"></i></span> Recomendado</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_proceso_de_instalación">Proceso de instalación</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Para la instalación de redborder Community IPS sensor, el usuario puede
+solicitar desde la web de redborder una <strong>imagen ISO</strong> que podrá usar para
+desplegar el software en el equipo que desee.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>En caso de instalación en <strong>máquina física</strong>, es posible grabar la imagen
+en un DVD o dispositivo de almacenamiento USB para proceder a su
+instalación</p>
+</li>
+<li>
+<p>En caso de instalación en <strong>máquina virtual</strong>, será suficiente montar la
+imagen en un dispositivo DVD virtual.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>En cualquiera de los dos tipos de escenarios, ya sea instalación sobre
+máquina física o virtual, tras arrancar el equipo desde la unidad en la
+que se encuentre montada la imagen ISO de redborder Community IPS, se
+mostrará en pantalla el asistente de instalación, que cuenta con un menú
+con las siguientes opciones:</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image21.png" alt="image21">
+</div>
+<div class="title">Figura 1. Pantalla principal del asistente de instalación de redborder Community IPS</div>
+</div>
+<div class="paragraph">
+<p>Seleccione <strong>Install Community IPS Sensor</strong> parama comenzar el proceso de
+instalación de redBorder Community IPS.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image12.png" alt="image">
+</div>
+<div class="title">Figura 2. Asistente de instalación: Install Sensor IPS</div>
+</div>
+<div class="paragraph">
+<p>Complete los siguientes ajustes básicos antes de continuar:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Selección de disco</p>
+</li>
+</ul>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image15.png" alt="image">
+</div>
+<div class="title">Figura 3. Ajustes básicos: selección de disco</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Selección de contraseña</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Contraseña por defecto: <code>redborder</code></p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image9.png" alt="image">
+</div>
+<div class="title">Figura 4. Ajustes básicos: selección de contraseña</div>
+</div>
+<div class="paragraph">
+<p>Una vez finalizados los ajustes básicos, se inicia automáticamente la
+instalación de redborder Community IPS.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image19.png" alt="image">
+</div>
+<div class="title">Figura 5. Instalación de los paquetes del sistema</div>
+</div>
+<div class="paragraph">
+<p>Tras completar la instalación, el sistema se reiniciará automáticamente.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image11.png" alt="image">
+</div>
+<div class="title">Figura 6. Reinicio del sistema tras la instalación de los paquetes del sistema</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_proceso_de_configuración">Proceso de configuración</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Una vez reiniciado el sistema, se puede iniciar la configuración de
+redborder Community IPS.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Credenciales del sistema:</div>
+<div class="listingblock">
+<div class="content">
+<pre>Usuario:    root
+Contraseña: &lt;introducida en los ajustes básicos&gt;</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image23.png" alt="image">
+</div>
+<div class="title">Figura 7. Solicitud de credenciales para acceder al sistema</div>
+</div>
+<div class="paragraph">
+<p>Se ejecuta el comando rb_sysconf para acceder al menú de configuración
+de redborder.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image17.png" alt="image">
+</div>
+<div class="title">Figura 8. Ejecución del comando <code>rb_sysconf</code></div>
+</div>
+<div class="sect2">
+<h3 id="_configuración_de_red">Configuración de red</h3>
+<div class="paragraph">
+<p>Una vez dentro del menú de configuración de redborder, seleccione la
+opción 2 (Network configuration) para acceder al menú de configuración
+de red.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image20.png" alt="image">
+</div>
+<div class="title">Figura 9. Menú de configuración de redborder Community IPS: selección de <code>Network configuration</code></div>
+</div>
+<div class="paragraph">
+<p>Desde el menú de configuración de red es posible establecer la interfaz
+de gestión, el DNS y el dominio.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image2.png" alt="image">
+</div>
+<div class="title">Figura 10. Menú de configuración de red de redborder Community IPS</div>
+</div>
+<div class="sect3">
+<h4 id="_configuración_de_la_interfaz_de_gestión">Configuración de la interfaz de gestión</h4>
+<div class="paragraph">
+<p>Seleccione la opción <strong>1</strong> para configurar la interfaz de gestión:
+Management Network configuration.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image8.png" alt="image">
+</div>
+<div class="title">Figura 11. Menú de configuración de red: selección de <code>Management Network configuration</code></div>
+</div>
+<div class="paragraph">
+<p>En este menú aparece un listado de los bondings existentes, por lo que
+tras la instalación deberá estar vacío, como se muestra en la imagen de
+abajo.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image25.png" alt="image">
+</div>
+<div class="title">Figura 12. Menú de configuración de red de gestión</div>
+</div>
+<div class="paragraph">
+<p>Para aportar redundancia, cabe la posibilidad de formar bondings con 2
+interfaces de gestión cada uno. Si no se desea redundancia, igualmente
+se deberá formar un bonding, aunque sea empleando una única interfaz de
+gestión.</p>
+</div>
+<div class="paragraph">
+<p>Seleccione la opción <code>n</code> para añadir un nuevo bonding e introduzca los
+parámetros que se solicitan. Puede ver en la imagen de abajo que la
+opción por defecto es incluir una única interfaz de gestión en el
+bonding (<code>Insert second port (y/N)?</code>).</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image26.png" alt="image">
+</div>
+<div class="title">Figura 13. Menú de configuración de red de gestión: <code>Bonding 0 created successfully</code></div>
+</div>
+<div class="paragraph">
+<p>El nuevo bonding creado aparece ahora en el listado anterior. También,
+se indica que para que los cambios surtan efecto se debe aplicar la
+configuración. Esto se hará al final del proceso de configuración de
+red.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image7.png" alt="image">
+</div>
+<div class="title">Figura 14. Nuevo bonding creado</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuración_de_dns_y_dominio">Configuración de DNS y dominio</h4>
+<div class="paragraph">
+<p>El siguiente paso será configurar el DNS y el dominio. Para ello, será
+necesario volver al menú anterior con la opción <code>q</code> y seleccionar la
+opción 2 (<code>DNS and domain settings</code>).</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image28.png" alt="image">
+</div>
+<div class="title">Figura 15. Menú de configuración de red: <code>DNS and domain settings</code></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuración_de_los_segmentos_de_inspección">Configuración de los segmentos de inspección</h4>
+<div class="paragraph">
+<p>Tras este punto, solo falta realizar la configuración de los segmentos
+de inspección. Seleccione la opción 3: <code>Segment settings</code>.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image4.png" alt="image">
+</div>
+<div class="title">Figura 16. Menú de configuración de red: <code>Segment settings</code></div>
+</div>
+<div class="paragraph">
+<p>Si las interfaces de red de inspección tienen la opción de bypass, esta
+configuración se habrá realizado automáticamente. En caso contrario,
+habrá que indicar qué interfaces de red se utilizarán para inspección.</p>
+</div>
+<div class="paragraph">
+<p>Para la elaboración de esta guía se han utilizado interfaces de red sin
+bypass. Es por esto en la siguiente imagen se muestra un listado vacío
+de segmentos de inspección.</p>
+</div>
+<div class="paragraph">
+<p>Se introduce la opción n para añadir un nuevo segmento y se completan
+los siguientes campos, como se indica en la imagen de abajo.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image32.png" alt="image">
+</div>
+<div class="title">Figura 17. Menú de configuración de segmentos: <code>new segment</code></div>
+</div>
+<div class="paragraph">
+<p>Tenga en cuenta que, por defecto, el asistente considera que querrá
+incluir un segundo puerto al segmento. Si no lo desea, deberá responder
+negativamente a la pregunta: <code>Assign a second port to the segment (Y/n)?</code>.</p>
+</div>
+<div class="paragraph">
+<p>En el menú de configuración de segmentos aparecerá el nuevo segmento
+creado, tal y como se muestra en la imagen de abajo.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image5.png" alt="image">
+</div>
+<div class="title">Figura 18. Menú de configuración de segmentos: <code>nuevo segmento creado</code></div>
+</div>
+<div class="paragraph">
+<p>Por último, es necesario aplicar los cambios de red. Para ello, desde el
+menú de configuración de red (si está en el menú de configuración de
+segmentos introduzca la opción <code>q</code> para volver al menú anterior)
+introduzca la opción <code>a</code> para aplicar los cambios.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image13.png" alt="image">
+</div>
+<div class="title">Figura 19. Menú de configuración de red: <code>apply</code></div>
+</div>
+<div class="paragraph">
+<p>El asistente comenzará a aplicar los cambios realizados y mostrará el
+resultado de los mismos.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image29.png" alt="image">
+</div>
+<div class="title">Figura 20. Menú de configuración de red: <code>aplicando cambios</code></div>
+</div>
+<div class="paragraph">
+<p>Una vez finalizado el proceso de aplicación de cambios, el asistente
+vuelve a la pantalla principal del menú de configuración de red.
+Seleccione la opción q para volver al menú de configuración principal.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image10.png" alt="image">
+</div>
+<div class="title">Figura 21. Menú de configuración de red: <code>quit</code></div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuración_del_sistema">Configuración del sistema</h3>
+<div class="paragraph">
+<p>En este punto se configura el nombre del sistema, se incluye la
+dirección IP del Manager de redborder en el que se registrará y se da la
+orden de registro. Selección de la opción 1: <code>System configuration</code>.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image22.png" alt="image">
+</div>
+<div class="title">Figura 22. Menú de configuración de redborder Community IPS: <code>selección de System configuration</code></div>
+</div>
+<div class="sect3">
+<h4 id="_nombre_de_equipo">Nombre de equipo</h4>
+<div class="paragraph">
+<p>Seleccione la opción 1 (Hostname) para cambiar el nombre del equipo y, a
+continuación, introduzca el nuevo nombre del equipo y continúe.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image30.png" alt="image">
+</div>
+<div class="title">Figura 23. Menú de configuración del sistema: Hostname</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dirección_ip_del_manager_de_redborder">Dirección IP del Manager de redborder</h4>
+<div class="paragraph">
+<p>El siguiente paso será indicar cuál será el Manager de redborder en el
+que se desea registrar el sensor redborder Community IPS. Para ello,
+seleccione la opción 3 (<code>IP address for rB Master Manager</code>) e introduzca
+la dirección IP del Manager de redborder.</p>
+</div>
+<div class="paragraph">
+<p>El sistema comprobará que tiene conectividad con el Manager y
+sincronizará la hora con él.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image6.png" alt="image">
+</div>
+<div class="title">Figura 24. Menú de configuración del sistema: <code>IP address for rB Master Manager</code></div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_registro_de_redborder_community_ips">Registro de redborder Community IPS</h4>
+<div class="paragraph">
+<p>A continuación, podrá proceder al registro del sensor IPS contra el
+Manager. Para ello, seleccione la opción 4 (Register rB Sensor/Manager)
+e introduzca las credenciales de admin de la consola web.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Credenciales de admin de la consola web por defecto</div>
+<div class="listingblock">
+<div class="content">
+<pre>usuario:    admin
+contraseña: redborder</pre>
+</div>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image1.png" alt="image">
+</div>
+<div class="title">Figura 25. Menú de configuración del sistema: <code>Register rB Sensor/Manager</code></div>
+</div>
+<div class="paragraph">
+<p>Para continuar, deberá indicar si desea obtener una salida más detallada
+del proceso de registro. Después de esto, comienza el proceso de
+registro del sensor redborder Community IPS contra el Manager de
+redborder.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image27.png" alt="image">
+</div>
+<div class="title">Figura 26. Proceso de registro del sensor redborder Community IPS contra el Manager de redborder</div>
+</div>
+<div class="paragraph">
+<p>Una vez terminado el registro, el sistema le pedirá que presione una
+tecla para continuar.</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image3.png" alt="image">
+</div>
+<div class="title">Figura 27. Proceso de registro finalizado</div>
+</div>
+<div class="paragraph">
+<p>Una vez hecho, verá la siguiente pantalla:</p>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/image14.png" alt="image">
+</div>
+<div class="title">Figura 28. Menú de configuración de sistema de redborder Community IPS tras completar el registro</div>
+</div>
+<div class="paragraph">
+<p>El proceso de configuración de redborder ha terminado. Por lo que ya
+puede salir del asistente de configuración de redborder Community IPS y
+hacer logout del sensor.</p>
+</div>
+<div class="paragraph">
+<p>Deberá acceder al Manager de redborder para crear una política de
+seguridad y aplicarla al sensor.</p>
+</div>
+</div>
 </div>
 </div>
 </div>
