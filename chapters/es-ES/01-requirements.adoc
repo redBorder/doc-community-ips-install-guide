@@ -29,7 +29,7 @@ Al menos una interfaz de red para inspección.
 
 Tenga en cuenta que estos requisitos son los mínimos necesarios para que
 redborder Community IPS pueda funcionar en un entorno ligero no crítico.
-Por favor, para **entornos crítmicos o con un mayor tráfico**, póngase en
+Por favor, para **entornos críticos o con un mayor tráfico**, póngase en
 contacto con el equipo de redborder.
 
 ### Requisitos de conectividad
