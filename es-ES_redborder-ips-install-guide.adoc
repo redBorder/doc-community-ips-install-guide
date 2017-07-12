@@ -16,7 +16,7 @@
 :figure-caption: Figura
 :stem: latexmath
 
-= Guía de instalación de redborder
+= Guía de instalación de redborder community
 
 include::chapters/es-ES/01-requirements.adoc[]
 
